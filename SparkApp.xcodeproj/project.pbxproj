@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C337A9A12C5FE4650040789E /* SparkAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C337A9A02C5FE4650040789E /* SparkAppApp.swift */; };
+		C337A9A12C5FE4650040789E /* SparkApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C337A9A02C5FE4650040789E /* SparkApp.swift */; };
 		C337A9A32C5FE4650040789E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C337A9A22C5FE4650040789E /* ContentView.swift */; };
 		C337A9A52C5FE4650040789E /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = C337A9A42C5FE4650040789E /* Item.swift */; };
 		C337A9A72C5FE4660040789E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C337A9A62C5FE4660040789E /* Assets.xcassets */; };
@@ -15,6 +15,13 @@
 		C337A9B42C5FE4660040789E /* SparkAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C337A9B32C5FE4660040789E /* SparkAppTests.swift */; };
 		C337A9BE2C5FE4660040789E /* SparkAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C337A9BD2C5FE4660040789E /* SparkAppUITests.swift */; };
 		C337A9C02C5FE4660040789E /* SparkAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C337A9BF2C5FE4660040789E /* SparkAppUITestsLaunchTests.swift */; };
+		C337A9CE2C60047B0040789E /* SparkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C337A9CD2C60047B0040789E /* SparkButton.swift */; };
+		C337A9D02C60049A0040789E /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = C337A9CF2C60049A0040789E /* Home.swift */; };
+		C337A9D22C6004C40040789E /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C337A9D12C6004C40040789E /* SearchViewModel.swift */; };
+		C337A9D42C6004CE0040789E /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = C337A9D32C6004CE0040789E /* News.swift */; };
+		C337A9D62C6004E80040789E /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = C337A9D52C6004E80040789E /* Events.swift */; };
+		C337A9D82C6004F20040789E /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C337A9D72C6004F20040789E /* SampleData.swift */; };
+		C337A9DA2C6005100040789E /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = C337A9D92C6005100040789E /* Search.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +43,7 @@
 
 /* Begin PBXFileReference section */
 		C337A99D2C5FE4650040789E /* SparkApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SparkApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		C337A9A02C5FE4650040789E /* SparkAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SparkAppApp.swift; sourceTree = "<group>"; };
+		C337A9A02C5FE4650040789E /* SparkApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SparkApp.swift; sourceTree = "<group>"; };
 		C337A9A22C5FE4650040789E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C337A9A42C5FE4650040789E /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		C337A9A62C5FE4660040789E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -46,6 +53,14 @@
 		C337A9B92C5FE4660040789E /* SparkAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SparkAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C337A9BD2C5FE4660040789E /* SparkAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SparkAppUITests.swift; sourceTree = "<group>"; };
 		C337A9BF2C5FE4660040789E /* SparkAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SparkAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		C337A9CC2C5FE78F0040789E /* OpenTerminal.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = OpenTerminal.sh; sourceTree = "<group>"; };
+		C337A9CD2C60047B0040789E /* SparkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SparkButton.swift; sourceTree = "<group>"; };
+		C337A9CF2C60049A0040789E /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		C337A9D12C6004C40040789E /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		C337A9D32C6004CE0040789E /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
+		C337A9D52C6004E80040789E /* Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
+		C337A9D72C6004F20040789E /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
+		C337A9D92C6005100040789E /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +91,7 @@
 		C337A9942C5FE4650040789E = {
 			isa = PBXGroup;
 			children = (
+				C337A9CC2C5FE78F0040789E /* OpenTerminal.sh */,
 				C337A99F2C5FE4650040789E /* SparkApp */,
 				C337A9B22C5FE4660040789E /* SparkAppTests */,
 				C337A9BC2C5FE4660040789E /* SparkAppUITests */,
@@ -96,9 +112,16 @@
 		C337A99F2C5FE4650040789E /* SparkApp */ = {
 			isa = PBXGroup;
 			children = (
-				C337A9A02C5FE4650040789E /* SparkAppApp.swift */,
+				C337A9A02C5FE4650040789E /* SparkApp.swift */,
 				C337A9A22C5FE4650040789E /* ContentView.swift */,
+				C337A9CF2C60049A0040789E /* Home.swift */,
+				C337A9D12C6004C40040789E /* SearchViewModel.swift */,
+				C337A9D32C6004CE0040789E /* News.swift */,
+				C337A9D52C6004E80040789E /* Events.swift */,
 				C337A9A42C5FE4650040789E /* Item.swift */,
+				C337A9CD2C60047B0040789E /* SparkButton.swift */,
+				C337A9D72C6004F20040789E /* SampleData.swift */,
+				C337A9D92C6005100040789E /* Search.swift */,
 				C337A9A62C5FE4660040789E /* Assets.xcassets */,
 				C337A9A82C5FE4660040789E /* Preview Content */,
 			);
@@ -260,9 +283,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C337A9D22C6004C40040789E /* SearchViewModel.swift in Sources */,
+				C337A9D02C60049A0040789E /* Home.swift in Sources */,
 				C337A9A32C5FE4650040789E /* ContentView.swift in Sources */,
+				C337A9CE2C60047B0040789E /* SparkButton.swift in Sources */,
+				C337A9D62C6004E80040789E /* Events.swift in Sources */,
+				C337A9D82C6004F20040789E /* SampleData.swift in Sources */,
+				C337A9D42C6004CE0040789E /* News.swift in Sources */,
+				C337A9DA2C6005100040789E /* Search.swift in Sources */,
 				C337A9A52C5FE4650040789E /* Item.swift in Sources */,
-				C337A9A12C5FE4650040789E /* SparkAppApp.swift in Sources */,
+				C337A9A12C5FE4650040789E /* SparkApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
