@@ -1,17 +1,22 @@
-//
-//  News.swift
-//  SparkApp
-//
-//  Created by Fardeen Bablu on 8/4/24.
-//
-
 import SwiftUI
+
 struct News: View {
     @State private var showFavorites = false
-    
+    @State private var titleVisible = true
+
     var body: some View {
         NavigationStack {
             ScrollView {
+                GeometryReader { geometry in
+                    Color.clear
+                        .onChange(of: geometry.frame(in: .global).minY) { minY in
+                            withAnimation {
+                                titleVisible = minY > 0
+                            }
+                        }
+                }
+                .frame(height: 0)
+
                 LazyVStack(spacing: 20) {
                     ForEach(NewsSections.allCases, id: \.self) { section in
                         Section(header: Text(section.rawValue).font(.headline)) {
@@ -23,7 +28,19 @@ struct News: View {
                 }
                 .padding()
             }
-            .navigationTitle("News")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    LazyHStack {
+                        if titleVisible {
+                            Text("News")
+                                .font(.largeTitle)
+                                .fontWeight(.bold)
+                        }
+                        Spacer()
+                    }
+                }
+            }
             .toolbar {
                 Button(action: {
                     showFavorites.toggle()
@@ -37,9 +54,10 @@ struct News: View {
         }
     }
 }
+
 struct NewsItemView: View {
     @State var item: NewsItem
-    
+
     var body: some View {
         HStack {
             RoundedRectangle(cornerRadius: 10)
@@ -49,7 +67,7 @@ struct NewsItemView: View {
                     Text(item.title)
                         .padding()
                 )
-            
+
             Button(action: {
                 item.isFavorite.toggle()
             }) {
@@ -59,6 +77,7 @@ struct NewsItemView: View {
         }
     }
 }
+
 enum NewsSections: String, CaseIterable {
     case news = "News"
     case recognitions = "Recognitions"
@@ -66,12 +85,14 @@ enum NewsSections: String, CaseIterable {
     case blogs = "Blogs"
     case podcasts = "Podcasts"
 }
+
 struct NewsItem: Identifiable {
     let id = UUID()
     let title: String
     let section: NewsSections
     var isFavorite: Bool = false
 }
+
 let newsItems: [NewsItem] = [
     NewsItem(title: "New Legal Framework Announced", section: .news),
     NewsItem(title: "Employee of the Month: Jane Doe", section: .recognitions),
@@ -80,6 +101,7 @@ let newsItems: [NewsItem] = [
     NewsItem(title: "Legal Ethics in the Digital Age", section: .podcasts),
     // Add more dummy data here
 ]
+
 struct News_Previews: PreviewProvider {
     static var previews: some View {
         News()

@@ -1,15 +1,21 @@
-//
-//  Events.swift
-//  SparkApp
-//
-//  Created by Fardeen Bablu on 8/4/24.
-//
-
 import SwiftUI
+
 struct Events: View {
+    @State private var titleVisible = true
+
     var body: some View {
         NavigationStack {
             ScrollView {
+                GeometryReader { geometry in
+                    Color.clear
+                        .onChange(of: geometry.frame(in: .global).minY) { minY in
+                            withAnimation {
+                                titleVisible = minY > 0
+                            }
+                        }
+                }
+                .frame(height: 0)
+                
                 LazyVStack(spacing: 20) {
                     ForEach(events) { event in
                         EventCard(event: event)
@@ -17,7 +23,21 @@ struct Events: View {
                 }
                 .padding()
             }
-            .navigationTitle("Events")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    LazyHStack {
+                        if titleVisible {
+                            Text("Events")
+                                .font(.largeTitle)
+                                .fontWeight(.bold)
+                                .transition(.move(edge: .leading).combined(with: .opacity))
+
+                        }
+                        Spacer()
+                    }
+                }
+            }
         }
         .tabItem {
             Label("Events", systemImage: "calendar")
@@ -25,9 +45,10 @@ struct Events: View {
         .tag(2)
     }
 }
+
 struct EventCard: View {
     let event: Event
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack {
@@ -37,13 +58,13 @@ struct EventCard: View {
                 Text(event.emoji)
                     .font(.title)
             }
-            
+
             Text(event.dateTime)
                 .font(.subheadline)
-            
+
             Text(event.location)
                 .font(.subheadline)
-            
+
             RoundedRectangle(cornerRadius: 10)
                 .fill(Color.gray.opacity(0.2))
                 .frame(height: 100)
@@ -58,13 +79,14 @@ struct EventCard: View {
         .shadow(radius: 5)
     }
 }
+
 struct Event: Identifiable {
     let id = UUID()
     let name: String
     let dateTime: String
     let location: String
     let category: EventCategory
-    
+
     var emoji: String {
         switch category {
         case .professionalInternal:
@@ -78,12 +100,14 @@ struct Event: Identifiable {
         }
     }
 }
+
 enum EventCategory {
     case professionalInternal
     case professionalGuests
     case virtualOnly
     case socialFun
 }
+
 let events: [Event] = [
     Event(name: "Team Meeting", dateTime: "2024-08-10 10:00 AM", location: "Conference Room A", category: .professionalInternal),
     Event(name: "Client Presentation", dateTime: "2024-08-15 2:00 PM", location: "Main Auditorium", category: .professionalGuests),
@@ -91,6 +115,7 @@ let events: [Event] = [
     Event(name: "Summer Picnic", dateTime: "2024-08-25 12:00 PM", location: "Central Park", category: .socialFun),
     // Add more dummy events here
 ]
+
 struct Events_Previews: PreviewProvider {
     static var previews: some View {
         Events()

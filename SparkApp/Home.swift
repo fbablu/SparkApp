@@ -17,7 +17,7 @@ struct Home: View {
     private var listofCountry = countryList
     var body: some View {
         NavigationStack {
-            VStack {
+            LazyVStack {
                 if searchActive {
                     List {
                         ForEach(countries, id: \.self) { country in
@@ -62,7 +62,19 @@ struct Home: View {
                 }
                 
             }
-            .navigationTitle("Home")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    LazyHStack {
+                        Text("Home")
+                            .font(.largeTitle)
+                            .fontWeight(.bold)
+                        Spacer()
+                    }
+                }
+            }
+//            .navigationTitle("Home")
+
         }
         .tabItem {
             Label("Home", systemImage: "house")
