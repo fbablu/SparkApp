@@ -8,16 +8,17 @@
 import SwiftUI
 import Foundation
 import SwiftData
+import Combine
+
 struct Home: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var items: [Item]
     @State private var searchText = ""
-    @State private var searchActive = false
-    @FocusState private var isSearchFocused: Bool
+    @State private var searchActive = falseit     @FocusState private var isSearchFocused: Bool
     private var listofCountry = countryList
     var body: some View {
         NavigationStack {
-            LazyVStack {
+            VStack {
                 if searchActive {
                     List {
                         ForEach(countries, id: \.self) { country in

@@ -6,16 +6,6 @@ struct Events: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                GeometryReader { geometry in
-                    Color.clear
-                        .onChange(of: geometry.frame(in: .global).minY) { minY in
-                            withAnimation {
-                                titleVisible = minY > 0
-                            }
-                        }
-                }
-                .frame(height: 0)
-                
                 LazyVStack(spacing: 20) {
                     ForEach(events) { event in
                         EventCard(event: event)
@@ -31,8 +21,6 @@ struct Events: View {
                             Text("Events")
                                 .font(.largeTitle)
                                 .fontWeight(.bold)
-                                .transition(.move(edge: .leading).combined(with: .opacity))
-
                         }
                         Spacer()
                     }

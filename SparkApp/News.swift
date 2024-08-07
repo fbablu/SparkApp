@@ -7,16 +7,6 @@ struct News: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                GeometryReader { geometry in
-                    Color.clear
-                        .onChange(of: geometry.frame(in: .global).minY) { minY in
-                            withAnimation {
-                                titleVisible = minY > 0
-                            }
-                        }
-                }
-                .frame(height: 0)
-
                 LazyVStack(spacing: 20) {
                     ForEach(NewsSections.allCases, id: \.self) { section in
                         Section(header: Text(section.rawValue).font(.headline)) {
