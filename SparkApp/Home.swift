@@ -1,10 +1,3 @@
-//
-//  Home.swift
-//  SparkApp
-//
-//  Created by Fardeen Bablu on 8/4/24.
-//
-
 import SwiftUI
 import Foundation
 import SwiftData
@@ -19,27 +12,24 @@ struct Home: View {
     @State private var showAllLinks = false
     @State private var quickLinks: [QuickLink] = []
 
-
-    private var listofCountry = countryList
-    
     var body: some View {
         NavigationStack {
-            ScrollView {
-                VStack(alignment: .leading, spacing: 20) {
-                    if !searchActive {
-                        favoritesSection
-                        allLinksSection
-                    } else {
-                        searchResultsSection
+            VStack {
+                if searchActive {
+                    searchResultsSection
+                } else {
+                    ScrollView {
+                        VStack(alignment: .leading, spacing: 20) {
+                            favoritesSection
+                            allLinksSection
+                        }
+                        .padding()
                     }
                 }
-                .padding()
             }
-            .searchable(text: $searchText, isPresented: $searchActive)
-            .onChange(of: searchActive, initial: true) {
-                DispatchQueue.main.asyncAfter(deadline: .now()) {
-                    isSearchFocused = true
-                }
+            .searchable(text: $searchText, isPresented: $searchActive, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search for people, clients, matters")
+            .onChange(of: searchText) { oldValue, newValue in
+                searchActive = !newValue.isEmpty
             }
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -47,6 +37,14 @@ struct Home: View {
                     Text("Home")
                         .font(.largeTitle)
                         .fontWeight(.bold)
+                }
+                if searchActive {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button("Cancel") {
+                            searchText = ""
+                            searchActive = false
+                        }
+                    }
                 }
             }
         }
@@ -64,13 +62,13 @@ struct Home: View {
                 }
                 .padding()
                 .transition(.scale.combined(with: .opacity))
-            }
+            } else {}
         }
         .onAppear {
             quickLinks = loadQuickLinksFromCSV()
         }
     }
-    
+
     var favoritesSection: some View {
         VStack(alignment: .leading, spacing: 10) {
             Text("Favorites")
@@ -91,6 +89,7 @@ struct Home: View {
             }
         }
     }
+
     var allLinksSection: some View {
         VStack(alignment: .leading, spacing: 10) {
             Text("All Links")
@@ -113,21 +112,43 @@ struct Home: View {
             }
         }
     }
-    
+
     var searchResultsSection: some View {
-        List {
-            ForEach(countries, id: \.self) { country in
+        VStack {
+            List(filteredLinks) { link in
                 HStack {
-                    Text(country.capitalized)
+                    Image(systemName: iconFor(type: link.type))
+                        .foregroundColor(colorFor(type: link.type))
+                    Text(link.name)
                     Spacer()
                     Image(systemName: "arrow.right")
                         .foregroundColor(Color.blue)
                 }
                 .padding()
+                .onTapGesture {
+                    handleLinkAction(link)
+                }
             }
+            .listStyle(PlainListStyle())
+//            .toolbar {
+//                ToolbarItem(placement: .navigationBarLeading) {
+//                    Button("Cancel") {
+//                        searchText = ""
+//                        searchActive = false
+//                    }
+//                }
+//            }
         }
     }
-    
+
+    var filteredLinks: [QuickLink] {
+        if searchText.isEmpty {
+            return quickLinks
+        } else {
+            return quickLinks.filter { $0.name.lowercased().contains(searchText.lowercased()) }
+        }
+    }
+
     func iconFor(type: String) -> String {
         switch type {
         case "Dashboard":
@@ -140,22 +161,47 @@ struct Home: View {
             return "questionmark.circle"
         }
     }
-    
+
+    func colorFor(type: String) -> Color {
+        switch type {
+        case "Dashboard":
+            return .blue
+        case "URL":
+            return .green
+        case "Access Required":
+            return .gray
+        default:
+            return .secondary
+        }
+    }
+
     func hapticFeedback() {
         let impact = UIImpactFeedbackGenerator(style: .medium)
         impact.impactOccurred()
     }
-    
-    var countries: [String] {
-        let lcCountries = listofCountry.map { $0.lowercased() }
-        return searchText.isEmpty ? lcCountries : lcCountries.filter { $0.contains(searchText.lowercased()) }
+
+    func handleLinkAction(_ link: QuickLink) {
+        switch link.type {
+        case "Dashboard":
+            // Show dashboard alert
+            print("Show dashboard alert for \(link.name)")
+        case "URL":
+            if let url = URL(string: link.url ?? "") {
+                UIApplication.shared.open(url)
+            }
+        case "Access Required":
+            // Show access required alert
+            print("Show access required alert for \(link.name)")
+        default:
+            print("Unknown link type for \(link.name)")
+        }
     }
 }
 
 struct QuickLinkButton: View {
     let link: QuickLink
     let icon: String
-    
+
     var body: some View {
         Button(action: {
             handleLinkAction(link)
@@ -174,7 +220,7 @@ struct QuickLinkButton: View {
         .background(backgroundColorFor(type: link.type))
         .cornerRadius(10)
     }
-    
+
     func backgroundColorFor(type: String) -> Color {
         switch type {
         case "Dashboard":
@@ -187,7 +233,7 @@ struct QuickLinkButton: View {
             return Color.secondary.opacity(0.1)
         }
     }
-    
+
     func handleLinkAction(_ link: QuickLink) {
         switch link.type {
         case "Dashboard":
