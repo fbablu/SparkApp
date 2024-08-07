@@ -16,11 +16,11 @@ struct Home: View {
     @State private var searchText = ""
     @State private var searchActive = false
     @FocusState private var isSearchFocused: Bool
-    @State private var quickLinks: [QuickLink] = []
     @State private var showAllLinks = false
+    @State private var quickLinks: [QuickLink] = []
+
 
     private var listofCountry = countryList
-    
     
     var body: some View {
         NavigationStack {
@@ -70,6 +70,7 @@ struct Home: View {
             quickLinks = loadQuickLinksFromCSV()
         }
     }
+    
     var favoritesSection: some View {
         VStack(alignment: .leading, spacing: 10) {
             Text("Favorites")
