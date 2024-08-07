@@ -14,8 +14,14 @@ struct Home: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var items: [Item]
     @State private var searchText = ""
-    @State private var searchActive = falseit     @FocusState private var isSearchFocused: Bool
+    @State private var searchActive = false
+    @FocusState private var isSearchFocused: Bool
+    @State private var quickLinksFunc: [QuickLink] = []
+    @State private var showAllLinks = false
+
     private var listofCountry = countryList
+    
+    
     var body: some View {
         NavigationStack {
             VStack {
@@ -94,7 +100,17 @@ struct Home: View {
                 .transition(.scale.combined(with: .opacity))
             }
         }
+        .onAppear {
+            print("========== testing converter !!!")
+            testConverter()
+            print("========== testing complete  !!!")
+            quickLinksFunc = loadQuickLinksFromCSV()
+        }
     }
+    
+    
+    
+    
     private var quickLinks: [(title: String, icon: String)] = [
         ("Company Portal", "building.2"),
         ("HR System", "person.text.rectangle"),
@@ -113,17 +129,3 @@ struct Home: View {
         impact.impactOccurred()
     }
 }
-//struct SparkButton: View {
-//    var action: () -> Void
-//
-//    var body: some View {
-//        Button(action: action) {
-//            Text("Spark")
-//                .padding()
-//                .background(Color.blue)
-//                .foregroundColor(.white)
-//                .clipShape(Circle())
-//        }
-//        .buttonStyle(.borderless)
-//    }
-//}

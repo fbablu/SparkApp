@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C30E0F3A2C63F95100DACFBE /* LinksData.csv in Resources */ = {isa = PBXBuildFile; fileRef = C30E0F392C63F95100DACFBE /* LinksData.csv */; };
+		C30E0F3C2C63F98800DACFBE /* CSVToJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30E0F3B2C63F98800DACFBE /* CSVToJSON.swift */; };
 		C337A9A12C5FE4650040789E /* SparkApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C337A9A02C5FE4650040789E /* SparkApp.swift */; };
 		C337A9A32C5FE4650040789E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C337A9A22C5FE4650040789E /* ContentView.swift */; };
 		C337A9A52C5FE4650040789E /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = C337A9A42C5FE4650040789E /* Item.swift */; };
@@ -42,6 +44,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C30E0F392C63F95100DACFBE /* LinksData.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LinksData.csv; sourceTree = "<group>"; };
+		C30E0F3B2C63F98800DACFBE /* CSVToJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVToJSON.swift; sourceTree = "<group>"; };
 		C337A99D2C5FE4650040789E /* SparkApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SparkApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C337A9A02C5FE4650040789E /* SparkApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SparkApp.swift; sourceTree = "<group>"; };
 		C337A9A22C5FE4650040789E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -115,6 +119,8 @@
 				C337A9A02C5FE4650040789E /* SparkApp.swift */,
 				C337A9A22C5FE4650040789E /* ContentView.swift */,
 				C337A9CF2C60049A0040789E /* Home.swift */,
+				C30E0F392C63F95100DACFBE /* LinksData.csv */,
+				C30E0F3B2C63F98800DACFBE /* CSVToJSON.swift */,
 				C337A9D12C6004C40040789E /* SearchViewModel.swift */,
 				C337A9D32C6004CE0040789E /* News.swift */,
 				C337A9D52C6004E80040789E /* Events.swift */,
@@ -259,6 +265,7 @@
 			files = (
 				C337A9AA2C5FE4660040789E /* Preview Assets.xcassets in Resources */,
 				C337A9A72C5FE4660040789E /* Assets.xcassets in Resources */,
+				C30E0F3A2C63F95100DACFBE /* LinksData.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,6 +291,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C337A9D22C6004C40040789E /* SearchViewModel.swift in Sources */,
+				C30E0F3C2C63F98800DACFBE /* CSVToJSON.swift in Sources */,
 				C337A9D02C60049A0040789E /* Home.swift in Sources */,
 				C337A9A32C5FE4650040789E /* ContentView.swift in Sources */,
 				C337A9CE2C60047B0040789E /* SparkButton.swift in Sources */,
