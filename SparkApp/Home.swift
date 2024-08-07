@@ -1,74 +1,57 @@
-//
-//  Home.swift
-//  SparkApp
-//
-//  Created by Fardeen Bablu on 8/4/24.
-//
-
 import SwiftUI
 import Foundation
 import SwiftData
+import Combine
+
 struct Home: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var items: [Item]
     @State private var searchText = ""
     @State private var searchActive = false
     @FocusState private var isSearchFocused: Bool
-    private var listofCountry = countryList
+    @State private var showAllLinks = false
+    @State private var quickLinks: [QuickLink] = []
+
     var body: some View {
         NavigationStack {
             VStack {
                 if searchActive {
-                    List {
-                        ForEach(countries, id: \.self) { country in
-                            HStack {
-                                Text(country.capitalized)
-                                Spacer()
-                                Image(systemName: "arrow.right")
-                                    .foregroundColor(Color.blue)
-                            }
-                            .padding()
-                        }
-                    }
+                    searchResultsSection
                 } else {
-                    // Quick Links Section
-                    Section(header: Text("Quick Links").font(.headline)) {
-                        LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 20) {
-                            ForEach(quickLinks, id: \.title) { link in
-                                Button(action: {
-                                    // Action to open the link
-                                }) {
-                                    VStack {
-                                        Image(systemName: link.icon)
-                                            .font(.largeTitle)
-                                        Text(link.title)
-                                            .font(.caption)
-                                    }
-                                }
-                                .frame(height: 80)
-                                .frame(maxWidth: .infinity)
-                                .background(Color.blue.opacity(0.1))
-                                .cornerRadius(10)
-                            }
+                    ScrollView {
+                        VStack(alignment: .leading, spacing: 20) {
+                            favoritesSection
+                            allLinksSection
                         }
                         .padding()
                     }
                 }
             }
-            .searchable(text: $searchText, isPresented: $searchActive)
-            .onChange(of: searchActive, initial: true) {
-                DispatchQueue.main.asyncAfter(deadline: .now()) {
-                    isSearchFocused = true
-                }
-                
+            .searchable(text: $searchText, isPresented: $searchActive, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search for people, clients, matters")
+            .onChange(of: searchText) { oldValue, newValue in
+                searchActive = !newValue.isEmpty
             }
-            .navigationTitle("Home")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Text("Home")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                }
+                if searchActive {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button("Cancel") {
+                            searchText = ""
+                            searchActive = false
+                        }
+                    }
+                }
+            }
         }
         .tabItem {
             Label("Home", systemImage: "house")
         }
         .tag(1)
-        // Overlay Spark button
         .overlay(alignment: .bottomTrailing) {
             if !searchActive {
                 SparkButton {
@@ -79,38 +62,184 @@ struct Home: View {
                 }
                 .padding()
                 .transition(.scale.combined(with: .opacity))
+            } else {}
+        }
+        .onAppear {
+            quickLinks = loadQuickLinksFromCSV()
+        }
+    }
+
+    var favoritesSection: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text("Favorites")
+                .font(.headline)
+            Text("Viewable Examples")
+                .font(.subheadline)
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))], spacing: 10) {
+                ForEach(quickLinks.filter { $0.type == "Dashboard" }) { link in
+                    QuickLinkButton(link: link, icon: "chart.bar")
+                }
+            }
+            Text("URL Redirects")
+                .font(.subheadline)
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))], spacing: 10) {
+                ForEach(quickLinks.filter { $0.type == "URL" }) { link in
+                    QuickLinkButton(link: link, icon: "link")
+                }
             }
         }
     }
-    private var quickLinks: [(title: String, icon: String)] = [
-        ("Company Portal", "building.2"),
-        ("HR System", "person.text.rectangle"),
-        ("Email", "envelope"),
-        ("Calendar", "calendar"),
-        ("Directory", "person.3"),
-        ("IT Support", "laptopcomputer")
-    ]
-    // Filter elements
-    var countries: [String] {
-        let lcCountries = listofCountry.map { $0.lowercased() }
-        return searchText.isEmpty ? lcCountries : lcCountries.filter { $0.contains(searchText.lowercased()) }
+
+    var allLinksSection: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text("All Links")
+                .font(.headline)
+            
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))], spacing: 10) {
+                ForEach(showAllLinks ? quickLinks : Array(quickLinks.prefix(5))) { link in
+                    QuickLinkButton(link: link, icon: iconFor(type: link.type))
+                }
+            }
+            
+            if !showAllLinks && quickLinks.count > 5 {
+                Button("Show All") {
+                    withAnimation {
+                        showAllLinks = true
+                    }
+                }
+                .frame(maxWidth: .infinity, alignment: .center)
+                .padding(.top)
+            }
+        }
     }
+
+    var searchResultsSection: some View {
+        VStack {
+            List(filteredLinks) { link in
+                HStack {
+                    Image(systemName: iconFor(type: link.type))
+                        .foregroundColor(colorFor(type: link.type))
+                    Text(link.name)
+                    Spacer()
+                    Image(systemName: "arrow.right")
+                        .foregroundColor(Color.blue)
+                }
+                .padding()
+                .onTapGesture {
+                    handleLinkAction(link)
+                }
+            }
+            .listStyle(PlainListStyle())
+        }
+    }
+
+    var filteredLinks: [QuickLink] {
+        if searchText.isEmpty {
+            return quickLinks
+        } else {
+            return quickLinks.filter { $0.name.lowercased().contains(searchText.lowercased()) }
+        }
+    }
+
+    func iconFor(type: String) -> String {
+        switch type {
+        case "Dashboard":
+            return "chart.bar"
+        case "URL":
+            return "link"
+        case "Access Required":
+            return "lock"
+        default:
+            return "questionmark.circle"
+        }
+    }
+
+    func colorFor(type: String) -> Color {
+        switch type {
+        case "Dashboard":
+            return .blue
+        case "URL":
+            return .green
+        case "Access Required":
+            return .gray
+        default:
+            return .secondary
+        }
+    }
+
     func hapticFeedback() {
         let impact = UIImpactFeedbackGenerator(style: .medium)
         impact.impactOccurred()
     }
+
+    func handleLinkAction(_ link: QuickLink) {
+        switch link.type {
+        case "Dashboard":
+            // Show dashboard alert
+            print("Show dashboard alert for \(link.name)")
+        case "URL":
+            if let url = URL(string: link.url ?? "") {
+                UIApplication.shared.open(url)
+            }
+        case "Access Required":
+            // Show access required alert
+            print("Show access required alert for \(link.name)")
+        default:
+            print("Unknown link type for \(link.name)")
+        }
+    }
 }
-//struct SparkButton: View {
-//    var action: () -> Void
-//
-//    var body: some View {
-//        Button(action: action) {
-//            Text("Spark")
-//                .padding()
-//                .background(Color.blue)
-//                .foregroundColor(.white)
-//                .clipShape(Circle())
-//        }
-//        .buttonStyle(.borderless)
-//    }
-//}
+
+struct QuickLinkButton: View {
+    let link: QuickLink
+    let icon: String
+
+    var body: some View {
+        Button(action: {
+            handleLinkAction(link)
+        }) {
+            VStack {
+                Image(systemName: icon)
+                    .font(.largeTitle)
+                Text(link.name)
+                    .font(.caption)
+                    .lineLimit(2)
+                    .multilineTextAlignment(.center)
+            }
+        }
+        .frame(height: 100)
+        .frame(maxWidth: .infinity)
+        .background(backgroundColorFor(type: link.type))
+        .cornerRadius(10)
+    }
+
+    func backgroundColorFor(type: String) -> Color {
+        switch type {
+        case "Dashboard":
+            return Color.blue.opacity(0.1)
+        case "URL":
+            return Color.green.opacity(0.1)
+        case "Access Required":
+            return Color.gray.opacity(0.1)
+        default:
+            return Color.secondary.opacity(0.1)
+        }
+    }
+
+    func handleLinkAction(_ link: QuickLink) {
+        switch link.type {
+        case "Dashboard":
+            // Show dashboard alert
+            print("Show dashboard alert for \(link.name)")
+        case "URL":
+            if let url = URL(string: link.url ?? "") {
+                UIApplication.shared.open(url)
+            }
+        case "Access Required":
+            // Show access required alert
+            print("Show access required alert for \(link.name)")
+        default:
+            print("Unknown link type for \(link.name)")
+        }
+    }
+}

@@ -4,7 +4,7 @@ struct SparkButton: View {
     @State private var isPressed = false
     var body: some View {
         Button(action: action) {
-            Image(systemName: "sparkles")
+            Image(systemName: "magnifyingglass")
                 .frame(width: 50, height: 60)
                 .foregroundColor(.white)
                 .background(isPressed ? Color.gray : Color.blue)
