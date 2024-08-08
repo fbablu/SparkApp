@@ -1,11 +1,7 @@
 {
   "images" : [
     {
-<<<<<<< HEAD
       "filename" : "SparkIcon.png",
-=======
-      "filename" : "SplashLogo.svg",
->>>>>>> 0f10b71a1279f949c1238d627a96071ffad74e45
       "idiom" : "universal",
       "scale" : "1x"
     },
