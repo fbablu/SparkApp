@@ -130,14 +130,6 @@ struct Home: View {
                 }
             }
             .listStyle(PlainListStyle())
-//            .toolbar {
-//                ToolbarItem(placement: .navigationBarLeading) {
-//                    Button("Cancel") {
-//                        searchText = ""
-//                        searchActive = false
-//                    }
-//                }
-//            }
         }
     }
 
