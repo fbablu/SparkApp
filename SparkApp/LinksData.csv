@@ -20,11 +20,11 @@ AR/WIP Dashboard,Access Required,,This data is not available
 Asana Project Management,Access Required,,This data requires user access
 Auditor Response Letter Review,Access Required,,This data requires user access
 Authentic8 Silo Secure Web Browsing,Access Required,,This data requires user access
-Billback,URL,billback/ibb/login.jsp?login=1&entrypoint=%2Fibb%2F&entryparam=,
+Billback,Access Required,,This data requires user access
 Billing FAQs,Access Required,,This data requires user access
 Billing Rates Report,Access Required,,This data requires user access
 BST- Submit A REQ,Access Required,,This data is not available
-Budgeting System,URL,http://chtm1webp01:9510/tm1web/,
+Budgeting System,Access Required,,This data requires user access
 Business Cards,Access Required,,This data requires user access
 Cafe Menu - 353 N. Clark,URL,https://portal.353nclark.com/main.cfm?sid=amenities&pid=oamenities#cafe,
 CE Manager,URL,https://jenner.cem.micronapps.com/login,
@@ -51,7 +51,7 @@ Invoice Formats (Billing and Collections),Access Required,,This data requires us
 iTimeKeep,URL,https://services.bellefieldcloud.com/newdesktop/#/login,
 Kiteworks,Access Required,,This data requires user access
 Km Time,Access Required,,This data requires user access
-KnowBe4 Security Awareness Training,URL,https://training.knowbe4.com/ui/login,
+KnowBe4 Security Awareness Training,Access Required,,This data requires user access
 Lex Machina Legal Analytics,URL,https://law.lexmachina.com/,
 Lex Mundi,Access Required,,This data requires user access
 Library Catalog & Resources,Access Required,,This data requires user access

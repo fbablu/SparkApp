@@ -22,9 +22,10 @@
 		C337A9D22C6004C40040789E /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C337A9D12C6004C40040789E /* SearchViewModel.swift */; };
 		C337A9D42C6004CE0040789E /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = C337A9D32C6004CE0040789E /* News.swift */; };
 		C337A9D62C6004E80040789E /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = C337A9D52C6004E80040789E /* Events.swift */; };
-		C337A9D82C6004F20040789E /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C337A9D72C6004F20040789E /* SampleData.swift */; };
 		C337A9DA2C6005100040789E /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = C337A9D92C6005100040789E /* Search.swift */; };
 		C3D398312C64D0BD0008CF81 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3D398302C64D0BD0008CF81 /* Launch Screen.storyboard */; };
+		C3D398332C65094C0008CF81 /* QuickLinkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D398322C65094C0008CF81 /* QuickLinkButton.swift */; };
+		C3D398352C6512B80008CF81 /* WebScrapeJenner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D398342C6512B80008CF81 /* WebScrapeJenner.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,9 +65,10 @@
 		C337A9D12C6004C40040789E /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		C337A9D32C6004CE0040789E /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		C337A9D52C6004E80040789E /* Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
-		C337A9D72C6004F20040789E /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
 		C337A9D92C6005100040789E /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 		C3D398302C64D0BD0008CF81 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		C3D398322C65094C0008CF81 /* QuickLinkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickLinkButton.swift; sourceTree = "<group>"; };
+		C3D398342C6512B80008CF81 /* WebScrapeJenner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebScrapeJenner.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,14 +123,15 @@
 				C337A9A02C5FE4650040789E /* SparkApp.swift */,
 				C337A9A22C5FE4650040789E /* ContentView.swift */,
 				C337A9CF2C60049A0040789E /* Home.swift */,
+				C3D398322C65094C0008CF81 /* QuickLinkButton.swift */,
 				C30E0F392C63F95100DACFBE /* LinksData.csv */,
 				C30E0F3B2C63F98800DACFBE /* CSVToJSON.swift */,
 				C337A9D12C6004C40040789E /* SearchViewModel.swift */,
 				C337A9D32C6004CE0040789E /* News.swift */,
+				C3D398342C6512B80008CF81 /* WebScrapeJenner.swift */,
 				C337A9D52C6004E80040789E /* Events.swift */,
 				C337A9A42C5FE4650040789E /* Item.swift */,
 				C337A9CD2C60047B0040789E /* SparkButton.swift */,
-				C337A9D72C6004F20040789E /* SampleData.swift */,
 				C337A9D92C6005100040789E /* Search.swift */,
 				C337A9A62C5FE4660040789E /* Assets.xcassets */,
 				C337A9A82C5FE4660040789E /* Preview Content */,
@@ -295,14 +298,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				C337A9D22C6004C40040789E /* SearchViewModel.swift in Sources */,
+				C3D398352C6512B80008CF81 /* WebScrapeJenner.swift in Sources */,
 				C30E0F3C2C63F98800DACFBE /* CSVToJSON.swift in Sources */,
 				C337A9D02C60049A0040789E /* Home.swift in Sources */,
 				C337A9A32C5FE4650040789E /* ContentView.swift in Sources */,
 				C337A9CE2C60047B0040789E /* SparkButton.swift in Sources */,
 				C337A9D62C6004E80040789E /* Events.swift in Sources */,
-				C337A9D82C6004F20040789E /* SampleData.swift in Sources */,
 				C337A9D42C6004CE0040789E /* News.swift in Sources */,
 				C337A9DA2C6005100040789E /* Search.swift in Sources */,
+				C3D398332C65094C0008CF81 /* QuickLinkButton.swift in Sources */,
 				C337A9A52C5FE4650040789E /* Item.swift in Sources */,
 				C337A9A12C5FE4650040789E /* SparkApp.swift in Sources */,
 			);

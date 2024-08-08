@@ -18,6 +18,7 @@ struct News: View {
                 }
                 .padding()
             }
+
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -42,6 +43,7 @@ struct News: View {
         .tabItem {
             Label("News", systemImage: "newspaper")
         }
+        
     }
 }
 
