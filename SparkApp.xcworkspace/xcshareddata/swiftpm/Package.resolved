@@ -1,13 +1,13 @@
 {
-  "originHash" : "b3eb72637281b9de0e60709c70441754d513c1cf9babd8b458b7cd454a37bc7c",
+  "originHash" : "d56e832f23250db79b753f07eff08d0ad55c43c65f4fe41ff66b23465a5e6f35",
   "pins" : [
     {
-      "identity" : "alamofire",
+      "identity" : "swiftsoup",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/Alamofire/Alamofire",
+      "location" : "https://github.com/scinfu/SwiftSoup",
       "state" : {
-        "revision" : "f455c2975872ccd2d9c81594c658af65716e9b9a",
-        "version" : "5.9.1"
+        "revision" : "32f5aea5af25d4229f3b1a72d6ed0edb3a12a03b",
+        "version" : "2.7.4"
       }
     },
     {

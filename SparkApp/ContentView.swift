@@ -11,6 +11,7 @@ struct ContentView: View {
             News()
             Home()
             Events()
+            
         }
     }
 }

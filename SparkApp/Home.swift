@@ -10,7 +10,9 @@ struct Home: View {
     @State private var searchActive = false
     @FocusState private var isSearchFocused: Bool
     @State private var showAllLinks = false
+    @State private var showAllPeople = false
     @State private var quickLinks: [QuickLink] = []
+    @State private var people: [Person] = []
 
     var body: some View {
         NavigationStack {
@@ -20,6 +22,7 @@ struct Home: View {
                 } else {
                     ScrollView {
                         VStack(alignment: .leading, spacing: 20) {
+                            peopleSection
                             favoritesSection
                             allLinksSection
                         }
@@ -62,10 +65,49 @@ struct Home: View {
                 }
                 .padding()
                 .transition(.scale.combined(with: .opacity))
-            } else {}
+            }
         }
         .onAppear {
             quickLinks = loadQuickLinksFromCSV()
+            people = loadPeopleFromJSON()
+            print("Loaded \(people.count) people") // Add this line for debugging
+        }
+    }
+
+    var peopleSection: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text("People")
+                .font(.headline)
+            
+            ScrollView(.horizontal, showsIndicators: false) {
+                LazyHStack(spacing: 10) {
+                    ForEach(showAllPeople ? people : Array(people.prefix(5))) { person in
+                        PersonCard(person: person)
+                    }
+                }
+            }
+            
+            if people.isEmpty {
+                Text("No people loaded")
+            } else {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    LazyHStack(spacing: 10) {
+                        ForEach(showAllPeople ? people : Array(people.prefix(5))) { person in
+                            PersonCard(person: person)
+                        }
+                    }
+                }
+            }
+            
+            if !showAllPeople && people.count > 5 {
+                Button("Show All") {
+                    withAnimation {
+                        showAllPeople = true
+                    }
+                }
+                .frame(maxWidth: .infinity, alignment: .center)
+                .padding(.top)
+            }
         }
     }
 
@@ -115,18 +157,52 @@ struct Home: View {
 
     var searchResultsSection: some View {
         VStack {
-            List(filteredLinks) { link in
-                HStack {
-                    Image(systemName: iconFor(type: link.type))
-                        .foregroundColor(colorFor(type: link.type))
-                    Text(link.name)
-                    Spacer()
-                    Image(systemName: "arrow.right")
-                        .foregroundColor(Color.blue)
+            List {
+                ForEach(filteredLinks) { link in
+                    HStack {
+                        Image(systemName: iconFor(type: link.type))
+                            .foregroundColor(colorFor(type: link.type))
+                        Text(link.name)
+                        Spacer()
+                        Image(systemName: "arrow.right")
+                            .foregroundColor(Color.blue)
+                    }
+                    .padding()
+                    .onTapGesture {
+                        handleLinkAction(link)
+                    }
                 }
-                .padding()
-                .onTapGesture {
-                    handleLinkAction(link)
+                
+                ForEach(filteredPeople) { person in
+                    HStack {
+                        AsyncImage(url: URL(string: person.imageURL)) { image in
+                            image
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                        } placeholder: {
+                            Color.gray
+                        }
+                        .frame(width: 40, height: 40)
+                        .clipShape(Circle())
+                        
+                        VStack(alignment: .leading) {
+                            Text(person.name)
+                            Text(person.position)
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                        }
+                        
+                        Spacer()
+                        
+                        Image(systemName: "arrow.right")
+                            .foregroundColor(Color.blue)
+                    }
+                    .padding()
+                    .onTapGesture {
+                        if let url = URL(string: person.url) {
+                            UIApplication.shared.open(url)
+                        }
+                    }
                 }
             }
             .listStyle(PlainListStyle())
@@ -138,6 +214,14 @@ struct Home: View {
             return quickLinks
         } else {
             return quickLinks.filter { $0.name.lowercased().contains(searchText.lowercased()) }
+        }
+    }
+
+    var filteredPeople: [Person] {
+        if searchText.isEmpty {
+            return people
+        } else {
+            return people.filter { $0.name.lowercased().contains(searchText.lowercased()) }
         }
     }
 
@@ -189,4 +273,3 @@ struct Home: View {
         }
     }
 }
-
