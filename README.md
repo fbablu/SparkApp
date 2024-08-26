@@ -1,4 +1,4 @@
-# [PROTOTYPE] Spark for Mobile  - Intranet Suite for iOS 
+<h1 align="center">Spark for Mobile - Intranet Suite for iOS</h1>
 
 <p align="center">
   <a target="_blank" href='https://developer.apple.com/swift/'><img src='https://img.shields.io/badge/Swift-F05138?style=for-the-badge&logo=swift&logoColor=white' alt="Swift"></a>
