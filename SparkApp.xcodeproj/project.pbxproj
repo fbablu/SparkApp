@@ -49,8 +49,6 @@
 		C337A9D42C6004CE0040789E /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = C337A9D32C6004CE0040789E /* News.swift */; };
 		C337A9D62C6004E80040789E /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = C337A9D52C6004E80040789E /* Events.swift */; };
 		C337A9DA2C6005100040789E /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = C337A9D92C6005100040789E /* Search.swift */; };
-		C3AF33592C6FEC30003E7606 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = C3AF33582C6FEC30003E7606 /* SwiftSoup */; };
-		C3CE588B2C6533CB007CF315 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = C3CE588A2C6533CB007CF315 /* SwiftyJSON */; };
 		C3D398312C64D0BD0008CF81 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3D398302C64D0BD0008CF81 /* Launch Screen.storyboard */; };
 		C3D398332C65094C0008CF81 /* QuickLinkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D398322C65094C0008CF81 /* QuickLinkButton.swift */; };
 		DC4E818F6ECF35E54141B672 /* Pods_SparkApp_SparkAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C97089839B10AD944840FCDB /* Pods_SparkApp_SparkAppUITests.framework */; };
@@ -138,8 +136,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C3AF33592C6FEC30003E7606 /* SwiftSoup in Frameworks */,
-				C3CE588B2C6533CB007CF315 /* SwiftyJSON in Frameworks */,
 				F59833444E715DD8C752E6DD /* Pods_SparkApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -309,8 +305,6 @@
 			);
 			name = SparkApp;
 			packageProductDependencies = (
-				C3CE588A2C6533CB007CF315 /* SwiftyJSON */,
-				C3AF33582C6FEC30003E7606 /* SwiftSoup */,
 			);
 			productName = SparkApp;
 			productReference = C337A99D2C5FE4650040789E /* SparkApp.app */;
@@ -388,8 +382,6 @@
 			);
 			mainGroup = C337A9942C5FE4650040789E;
 			packageReferences = (
-				C3CE58892C6533CB007CF315 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
-				C3AF33572C6FEC30003E7606 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
 			);
 			productRefGroup = C337A99E2C5FE4650040789E /* Products */;
 			projectDirPath = "";
@@ -915,38 +907,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		C3AF33572C6FEC30003E7606 /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/scinfu/SwiftSoup";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.7.4;
-			};
-		};
-		C3CE58892C6533CB007CF315 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.2;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		C3AF33582C6FEC30003E7606 /* SwiftSoup */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C3AF33572C6FEC30003E7606 /* XCRemoteSwiftPackageReference "SwiftSoup" */;
-			productName = SwiftSoup;
-		};
-		C3CE588A2C6533CB007CF315 /* SwiftyJSON */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C3CE58892C6533CB007CF315 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
-			productName = SwiftyJSON;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C337A9952C5FE4650040789E /* Project object */;
 }
