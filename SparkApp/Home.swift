@@ -1,9 +1,17 @@
+//
+//  Home.swift
+//  Spark
+//
+//  Created by Fardeen Bablu on 8/2/24.
+//
+
 import SwiftUI
-import Foundation
 import SwiftData
 import Combine
 
+/// The home view of the application.
 struct Home: View {
+    // MARK: - Properties
     @Environment(\.modelContext) private var modelContext
     @Query private var items: [Item]
     @State private var searchText = ""
@@ -13,7 +21,8 @@ struct Home: View {
     @State private var showAllPeople = false
     @State private var quickLinks: [QuickLink] = []
     @State private var people: [Person] = []
-
+    
+    // MARK: - Body
     var body: some View {
         NavigationStack {
             VStack {
@@ -70,22 +79,17 @@ struct Home: View {
         .onAppear {
             quickLinks = loadQuickLinksFromCSV()
             people = loadPeopleFromJSON()
-            print("Loaded \(people.count) people") // Add this line for debugging
+            print("Loaded \(people.count) people")
         }
     }
-
+    
+    // MARK: - Subviews
+    
+    /// Displays the people section
     var peopleSection: some View {
         VStack(alignment: .leading, spacing: 10) {
             Text("People")
                 .font(.headline)
-            
-            ScrollView(.horizontal, showsIndicators: false) {
-                LazyHStack(spacing: 10) {
-                    ForEach(showAllPeople ? people : Array(people.prefix(5))) { person in
-                        PersonCard(person: person)
-                    }
-                }
-            }
             
             if people.isEmpty {
                 Text("No people loaded")
@@ -110,7 +114,8 @@ struct Home: View {
             }
         }
     }
-
+    
+    /// Displays the favorites section
     var favoritesSection: some View {
         VStack(alignment: .leading, spacing: 10) {
             Text("Favorites")
@@ -131,7 +136,8 @@ struct Home: View {
             }
         }
     }
-
+    
+    /// Displays all links section
     var allLinksSection: some View {
         VStack(alignment: .leading, spacing: 10) {
             Text("All Links")
@@ -154,7 +160,8 @@ struct Home: View {
             }
         }
     }
-
+    
+    /// Displays search results
     var searchResultsSection: some View {
         VStack {
             List {
@@ -208,7 +215,10 @@ struct Home: View {
             .listStyle(PlainListStyle())
         }
     }
-
+    
+    // MARK: - Helper Methods
+    
+    /// Filters links based on search text
     var filteredLinks: [QuickLink] {
         if searchText.isEmpty {
             return quickLinks
@@ -216,7 +226,8 @@ struct Home: View {
             return quickLinks.filter { $0.name.lowercased().contains(searchText.lowercased()) }
         }
     }
-
+    
+    /// Filters people based on search text
     var filteredPeople: [Person] {
         if searchText.isEmpty {
             return people
@@ -224,7 +235,8 @@ struct Home: View {
             return people.filter { $0.name.lowercased().contains(searchText.lowercased()) }
         }
     }
-
+    
+    /// Returns the appropriate icon for a given link type
     func iconFor(type: String) -> String {
         switch type {
         case "Dashboard":
@@ -237,7 +249,8 @@ struct Home: View {
             return "questionmark.circle"
         }
     }
-
+    
+    /// Returns the appropriate color for a given link type
     func colorFor(type: String) -> Color {
         switch type {
         case "Dashboard":
@@ -250,23 +263,23 @@ struct Home: View {
             return .secondary
         }
     }
-
+    
+    /// Provides haptic feedback
     func hapticFeedback() {
         let impact = UIImpactFeedbackGenerator(style: .medium)
         impact.impactOccurred()
     }
-
+    
+    /// Handles the action when a link is tapped
     func handleLinkAction(_ link: QuickLink) {
         switch link.type {
         case "Dashboard":
-            // Show dashboard alert
             print("Show dashboard alert for \(link.name)")
         case "URL":
             if let url = URL(string: link.url ?? "") {
                 UIApplication.shared.open(url)
             }
         case "Access Required":
-            // Show access required alert
             print("Show access required alert for \(link.name)")
         default:
             print("Unknown link type for \(link.name)")

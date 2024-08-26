@@ -1,12 +1,13 @@
 //
-//  csvToJSON.swift
-//  SparkApp
+//  QuickLink.swift
+//  Spark
 //
 //  Created by Fardeen Bablu on 8/7/24.
 //
 
 import Foundation
 
+/// Represents a quick link in the application
 struct QuickLink: Codable, Identifiable {
     var id = UUID()
     let name: String
@@ -15,6 +16,8 @@ struct QuickLink: Codable, Identifiable {
     let description: String?
 }
 
+/// Loads quick links from a CSV file
+/// - Returns: An array of QuickLink objects
 func loadQuickLinksFromCSV() -> [QuickLink] {
     guard let path = Bundle.main.path(forResource: "LinksData", ofType: "csv") else {
         print("CSV File not Found")
@@ -45,6 +48,9 @@ func loadQuickLinksFromCSV() -> [QuickLink] {
     }
 }
 
+/// Converts QuickLink objects to JSON
+/// - Parameter quickLinks: An array of QuickLink objects
+/// - Returns: A JSON string representation of the quick links
 func convertQuickLinksToJSON(quickLinks: [QuickLink]) -> String? {
     let jsonEncoder = JSONEncoder()
     jsonEncoder.outputFormatting = .prettyPrinted
@@ -58,7 +64,8 @@ func convertQuickLinksToJSON(quickLinks: [QuickLink]) -> String? {
     }
 }
 
-func testConverter() -> Void {
+/// Test function to demonstrate the CSV to JSON conversion
+func testConverter() {
     let quickLinks = loadQuickLinksFromCSV()
     if !quickLinks.isEmpty {
         print("Loaded \(quickLinks.count) from CSV")

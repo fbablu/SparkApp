@@ -1,7 +1,13 @@
-// Person.swift
+//
+//  Person.swift
+//  Spark
+//
+//  Created by Fardeen Bablu on 8/2/24.
+//
 
 import Foundation
 
+/// Represents a person in the application
 struct Person: Codable, Identifiable {
     var id = UUID()
     let name: String
@@ -14,6 +20,8 @@ struct Person: Codable, Identifiable {
     let vCard: String?
 }
 
+/// Loads people data from a JSON file
+/// - Returns: An array of Person objects
 func loadPeopleFromJSON() -> [Person] {
     guard let url = Bundle.main.url(forResource: "people", withExtension: "json") else {
         print("JSON File not found")
