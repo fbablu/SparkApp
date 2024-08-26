@@ -11,6 +11,17 @@
 Screenshots
 -----------
 
+![Search Button Demo](./demo/Search.gif)
+
+![Home Screen](./demo/Home.png)
+
+![News Section](./demo/News.png)
+
+![Events Section](./demo/Events.png)
+
+![Launch Screen](.demo/LaunchScreen.png)
+
+
 ## Overview
 
 **Spark** is a native iOS application prototype developed as a proof of concept for my internship at **Jenner & Block**. This app serves as a hub for accessing public data from the official [Jenner.com](https://www.jenner.com) website, allowing users to view people, news, and events. None of the information in this application is proprietary, commercial, or privately owned. All information is publicly available on the Jenner & Block website.
