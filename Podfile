@@ -11,7 +11,7 @@ pod 'SwiftSoup'
   # Pods for SparkApp
 
 
-  target 'SparkAppTests' do
+  target 'SparkAppTests' do 
     inherit! :search_paths
     # Pods for testing
   end
