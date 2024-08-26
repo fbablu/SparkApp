@@ -9,11 +9,11 @@
 
 <div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 20px;">
 
-  <img src="./demo/LaunchScreen.png" alt="Launch Screen" width="199"/>
-  <img src="./demo/Home.png" alt="Home Screen" width="199"/>
-  <img src="./demo/Search.gif" alt="Search Button Demo" width="199"/>
-  <img src="./demo/News.png" alt="News Section" width="199"/>
-  <img src="./demo/Events.png" alt="Events Screen" width="199"/>
+  <img src="./demo/LaunchScreen.png" alt="Launch Screen" width="195"/>
+  <img src="./demo/Home.png" alt="Home Screen" width="195"/>
+  <img src="./demo/Search.gif" alt="Search Button Demo" width="195"/>
+  <img src="./demo/News.png" alt="News Section" width="195"/>
+  <img src="./demo/Events.png" alt="Events Screen" width="195"/>
 
 </div>
 
