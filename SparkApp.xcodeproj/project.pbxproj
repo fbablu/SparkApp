@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		35A30628D3D7E861BEE5AF03 /* Pods_SparkAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99EB8CBFAEFC34A99B9DFC4C /* Pods_SparkAppTests.framework */; };
 		C30E0F3A2C63F95100DACFBE /* LinksData.csv in Resources */ = {isa = PBXBuildFile; fileRef = C30E0F392C63F95100DACFBE /* LinksData.csv */; };
-		C30E0F3C2C63F98800DACFBE /* CSVToJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30E0F3B2C63F98800DACFBE /* CSVToJSON.swift */; };
+		C30E0F3C2C63F98800DACFBE /* QuickLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30E0F3B2C63F98800DACFBE /* QuickLink.swift */; };
 		C3130E942C78269A006E25B0 /* SamplePeople.json in Resources */ = {isa = PBXBuildFile; fileRef = C3130E932C78269A006E25B0 /* SamplePeople.json */; };
 		C327C7C32C7841920086462D /* abbott_christopher.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C327C7AE2C7841920086462D /* abbott_christopher.jpg */; };
 		C327C7C42C7841920086462D /* alderdice_jacob_blueweb.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C327C7AF2C7841920086462D /* alderdice_jacob_blueweb.jpg */; };
@@ -83,7 +83,7 @@
 		99EB8CBFAEFC34A99B9DFC4C /* Pods_SparkAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SparkAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC5AA98D4E5FC4C5FEBB829C /* Pods-SparkApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SparkApp.debug.xcconfig"; path = "Target Support Files/Pods-SparkApp/Pods-SparkApp.debug.xcconfig"; sourceTree = "<group>"; };
 		C30E0F392C63F95100DACFBE /* LinksData.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LinksData.csv; sourceTree = "<group>"; };
-		C30E0F3B2C63F98800DACFBE /* CSVToJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVToJSON.swift; sourceTree = "<group>"; };
+		C30E0F3B2C63F98800DACFBE /* QuickLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickLink.swift; sourceTree = "<group>"; };
 		C3130E932C78269A006E25B0 /* SamplePeople.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = SamplePeople.json; sourceTree = "<group>"; };
 		C327C7AE2C7841920086462D /* abbott_christopher.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = abbott_christopher.jpg; sourceTree = "<group>"; };
 		C327C7AF2C7841920086462D /* alderdice_jacob_blueweb.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = alderdice_jacob_blueweb.jpg; sourceTree = "<group>"; };
@@ -247,7 +247,7 @@
 				C327C7D72C7846FE0086462D /* Person.swift */,
 				C3D398322C65094C0008CF81 /* QuickLinkButton.swift */,
 				C30E0F392C63F95100DACFBE /* LinksData.csv */,
-				C30E0F3B2C63F98800DACFBE /* CSVToJSON.swift */,
+				C30E0F3B2C63F98800DACFBE /* QuickLink.swift */,
 				C337A9D32C6004CE0040789E /* News.swift */,
 				C337A9D52C6004E80040789E /* Events.swift */,
 				C337A9A42C5FE4650040789E /* Item.swift */,
@@ -562,7 +562,7 @@
 				C327C7DC2C784BFA0086462D /* AsyncImageView.swift in Sources */,
 				C327C7E02C784FC40086462D /* PersonCard.swift in Sources */,
 				C327C7DE2C784FB70086462D /* PeopleLoader.swift in Sources */,
-				C30E0F3C2C63F98800DACFBE /* CSVToJSON.swift in Sources */,
+				C30E0F3C2C63F98800DACFBE /* QuickLink.swift in Sources */,
 				C337A9D02C60049A0040789E /* Home.swift in Sources */,
 				C337A9A32C5FE4650040789E /* ContentView.swift in Sources */,
 				C337A9CE2C60047B0040789E /* SparkButton.swift in Sources */,
